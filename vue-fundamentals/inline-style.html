@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <form action="">
+                    <div class="form-group">
+                        <label for="color-select">Select Text color</label>
+                        <select 
+                            name="color-select" 
+                            id="color-select" 
+                            class="form-control"
+                            v-model="color"
+                        >
+                            <option value="blue">Blue</option>
+                            <option value="red">Red</option>
+                            <option value="green">Green</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <form action="">
+                    <div class="form-group">
+                        <label for="bg-select">Select BG color</label>
+                        <select 
+                            name="bg-select" 
+                            id="bg-select" 
+                            class="form-control"
+                            v-model="bgColor"
+                        >
+                            <option value="white">White</option>
+                            <option value="gray">Gray</option>
+                            <option value="black">Black</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <colored-text 
+                    :text-color="color" 
+                    :bg-color="bgColor"
+                    text="This is some text"
+                ></colored-text>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data() {
+                return {
+                    color: '',
+                    bgColor: ''
+                }
+            }
+        });
+
+        app.component('colored-text', {
+            props: ['textColor', 'bgColor','text'],
+            template: `<p :style="{color: textColor, backgroundColor: bgColor}">{{text}}</p>`
+        });
+        
+        
+        app.mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="checkForm()">
+            <div>
+                <input type="text" v-model="message">
+            </div>
+            <div>
+                <button>Submit</button>
+            </div>
+        </form>
+        
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let HelloWorldApp = {
+            data() {
+                return {
+                    message: '',
+                    
+                };
+            },
+            methods: {
+                checkForm() {
+                    if (this.message) {
+                        // javascript http
+                    } else {
+                        alert('Supply value');
+                    }
+                }
+            }
+        };
+
+        Vue.createApp(HelloWorldApp).mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="checkForm()">
+            <div>
+                <label for="">Your Favorite Color</label>
+                <input type="text" v-model="color">
+            </div>
+            <div>
+                <button>Submit</button>
+            </div>
+        </form>
+        <!-- 
+            v-show -- shows and hides using CSS
+            v-if   -- add/removes elements
+              v-else
+              v-else-if
+
+
+        -->
+        <div v-if="favoriteMessage">
+            {{favoriteMessage}}
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let HelloWorldApp = {
+            data() {
+                return {
+                    color: '',
+                    favoriteMessage: ''
+                };
+            },
+            methods: {
+                checkForm() {
+                    if (!this.color) {
+                        alert('Please enter a color');
+                        return;
+                    }
+
+                    this.favoriteMessage = 'That is not my favorite color';
+
+                    if (this.color === 'blue') {
+                        this.favoriteMessage = 'That is my favorite, too!';
+                    }
+
+                }
+            }
+        };
+
+        Vue.createApp(HelloWorldApp).mount('#app');
+    </script>
+</body>
+</html>

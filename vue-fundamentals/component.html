@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <list :items="guitars"></list>
+
+        </div>
+        <div>
+        <list :items="fruit"></list>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data() {
+                return {
+                    guitars: [
+                        'Gibson Les Paul',
+                        'Fender Strat',
+                        'Gibson Explorer',
+                        'PRS Vela',
+                        'PRS Starla'
+                    ],
+                    fruit: [
+                        'apple',
+                        'orange',
+                        'banana'
+                    ]
+                }
+            }
+        });
+
+        app.component('list', {
+            props: ['items'],
+            template: `<ul>
+                            <li 
+                                v-for="(item, index) in items" 
+                                :key="index"
+                            >{{index}}: {{item}}</li>
+                        </ul>`
+        });
+        
+        
+        app.mount('#app');
+    </script>
+</body>
+</html>
